@@ -1,0 +1,256 @@
+## tallypay  (52 activities)
+  - AccountManagerActivity
+  - AddMoneyActivity
+  - AddMoneyFromBankActivity
+  - AddMoneyFromCardActivity
+  - AddMoneyFromNagadActivity
+  - AddMoneyFromRocketActivity
+  - AddMoneyNagadWebViewActivity
+  - AddMoneyRocketWebViewActivity
+  - AddMoneyWebViewActivity
+  - AddNewBankAccountActivity
+  - BanglaQrCaptureActivity
+  - BusinessInfoChoiceActivity
+  - CongratulationsActivity
+  - DigitalOnboardActivity
+  - DigitalSaleSuccessActivity
+  - DocumentUploadActivity
+  - EkycInitActivity
+  - GenericSuccessActivity
+  - GenericTaskDoneActivity
+  - ImageCaptureActivity
+  - ImageUploadActivity
+  - LimitChargeActivity
+  - LinkMobileBankAccountActivity
+  - LinkMobileBankOtpVerificationActivity
+  - NIDVerificationActivity
+  - NidInfoActivity
+  - NomineeInfoActivity
+  - PendingBankAccountVerifyActivity
+  - QrCaptureActivity
+  - QrScannerActivity
+  - SelectCustomerForAdayActivity
+  - SendAdaySmsActivity
+  - TpCaptureNidSuccessActivity
+  - TpDeleteBankAccountActivity
+  - TpEachTransactionDetailsActivity
+  - TpNomineeInfoActivity
+  - TpNomineeInfoEditActivity
+  - TpPaymentActivity
+  - TpPendingTransactionDetailsActivity
+  - TpProfileQrActivity
+  - TpPromoDetailsActivity
+  - TpRechargeActivity
+  - TpSendMoneyActivity
+  - TpTransferActivity
+  - TpWalletActivity
+  - TpWalletAllServicesActivity
+  - TpWalletPinSetActivity
+  - TpWalletRegistrationActivity
+  - TradeLicenseActivity
+  - TransactionErrorActivity
+  - TransactionHistoryActivity
+  - TransactionLimitActivity
+
+## activities  (19 activities)
+  - AppSecurityActivity
+  - CashDetailsActivity
+  - CreditEntrySuccessActivity
+  - CustomerReportActivity
+  - DailyReportActivity
+  - HeadsUpNotificationActivity
+  - HelpActivity
+  - ImageUploadPreviewActivity
+  - InboxActivity
+  - MonthlyCashActivity
+  - MonthlyCreditActivity
+  - MonthlyStatementActivity
+  - NotificationDetailsActivity
+  - ReferralActivity
+  - SettingsActivity
+  - ShowUnverifiedNumberActivity
+  - Terms_n_ConditionsActivity
+  - TooltipActivity
+  - WebViewActivity
+
+## cashbox  (14 activities)
+  - CashAdjustmentActivity
+  - CashAdjustmentConfirmationEvenActivity
+  - CashAdjustmentConfirmationNegativeActivity
+  - CashAdjustmentConfirmationPositiveActivity
+  - CashAdjustmentSuccessPositiveActivity
+  - CashBoxEntryEditAcitvity
+  - CashBoxTodayActivity
+  - CashSellActivity
+  - PreviousDayCashAdjustmentActivity
+  - PreviousDayCashAdjustmentConfirmationEvenActivity
+  - PreviousDayCashAdjustmentConfirmationNegativeActivity
+  - PreviousDayCashAdjustmentConfirmationPositiveActivity
+  - PreviousDayCashAdjustmentSuccess
+  - TKSuccessActivity
+
+## report_download  (13 activities)
+  - BechaKenaSummaryPdfActivity
+  - CashBoxDetailPdfActivity
+  - CashBoxSummeryPdfActivity
+  - CashReportSummeryPdfActivity
+  - CustomerListReportBuilderActivity
+  - DailyBakiPdfBuilderActivity
+  - DailyBechaKenaDetailPdfActivity
+  - DailyExpensePdfBuilderActivity
+  - MalikPdfReportBuilderActivity
+  - MonthlyBakiPdfBuilderActivity
+  - MonthlyBechaKenaDetailPdfActivity
+  - MonthlyExpensePdfBuilderActivity
+  - TxnListReportBuilderActivity
+
+## (other)  (13 activities)
+  - AddWalletActivity
+  - CashOut
+  - LoginActivity
+  - MobileInput
+  - OtpInputActivity
+  - OtpInputPinChange
+  - PINChange
+  - PaymentActivity
+  - PaymentDetailActivity
+  - RegisterFingerPrintActivity
+  - ReversePayment
+  - SupplierPayment
+  - WalletDetailsActivity
+
+## login  (12 activities)
+  - EKYCPinSetupActivity
+  - ForgotPinActivity
+  - LoginActivity
+  - MigrateTPPinPromptActivity
+  - PinBlockedActivity
+  - PinChangeSetupActivity
+  - PinResetSetupActivity
+  - PinResetVerifiedFaceImageUpload
+  - PinSetupActivity
+  - PostVerificationDeviceChooserActivity
+  - TallykhataBasicPinSetupActivity
+  - WalletLoginActivity
+
+## reports  (11 activities)
+  - BakiReportActivity
+  - BechaKenaReportActivity
+  - CashReportActivity
+  - DailyBuySaleReportActivity
+  - DailyCashBechaReportActivity
+  - DailyCashExpenseReportActivity
+  - DailyCashKenaReportActivity
+  - ExpenseReportActivity
+  - GenericCashBoxReportActivity
+  - MalikReportActivity
+  - SmsReportActivity
+
+## customer_onboard  (8 activities)
+  - AuthInitActivity
+  - MobileVerificationForUnverifiedUserActivity
+  - OnBoardingActivity
+  - OtpVerificationActivity
+  - ShopNameEntryActivity
+  - SignUpForExistingUserActivity
+  - SplashScreenActivity
+  - WalletLookUpAndDecideDestinationActivity
+
+## surecash  (7 activities)
+  - ScCashOutActivity
+  - ScCashOutAgentInputActivity
+  - ScCreditSettlementActivity
+  - ScCreditSettlementConfirmationActivity
+  - ScSupplierPaymentActivity
+  - ScTransactionDetailsActivity
+  - ScWalletActivity
+
+## payments  (6 activities)
+  - BkashCheckoutActivity
+  - BkashPaymentSuccessActivity
+  - BuySmsActivity
+  - BuySmsSuccessActivity
+  - BuyTallySmsPinActivity
+  - FailedFullScreenActivity
+
+## edit_delete_malik_txn  (4 activities)
+  - ConfirmMalikTxnWithPinActivity
+  - MalikEditDeleteSuccessActivity
+  - MalikTxnEditActivity
+  - MalikTxnEditDeleteSelectionActivity
+
+## edit_jer  (4 activities)
+  - ConfirmEditJerWithPIN
+  - EditJerActivity
+  - EditJerInfoActivity
+  - JerEditConfirmationActivity
+
+## edit_delete_cash_txn  (4 activities)
+  - CashTxnEditActivity
+  - CashTxnEditDeleteSelectionActivity
+  - CashTxnEditDeleteSuccess
+  - ConfirmCashEditDeleteWithPIN
+
+## edit_delete_transaction  (4 activities)
+  - ConfirmTxnEditDeleteWithPIN
+  - EditDeleteTransactionActivity
+  - EditTransactionActivity
+  - TransactionEditDeleteSuccess
+
+## edit_delete_customer  (4 activities)
+  - CustomerEditDeleteSuccessActivity
+  - DeleteCustomerSupplierActivity
+  - EditCustomerSupplierActivity
+  - EditDeleteCustomerConfirmWithPIN
+
+## edit_delete_cash_box_txn  (3 activities)
+  - CashBoxTxnEditActivity
+  - CashBoxTxnEditDeleteSelectionActivity
+  - ConfirmCashBoxEditDeleteWithPIN
+
+## cstxn  (2 activities)
+  - CreditEntryActivity
+  - TxnShareActivity
+
+## data_backup  (2 activities)
+  - DataBackupActivity
+  - PromptAccountChooserActivity
+
+## tagada  (2 activities)
+  - TagadaActivity
+  - TagadaSelectionActivity
+
+## add_customer  (2 activities)
+  - AddCustomerSupplier
+  - CSAddActivity
+
+## profile  (2 activities)
+  - EditProfileActivity
+  - ProfileActivity
+
+## supplier_txn  (1 activities)
+  - SupplierTxnSuccessActivity
+
+## dialogs  (1 activities)
+  - BusinessTypeSuccessDialogActivity
+
+## GetBusinessTypeActivity  (1 activities)
+  - GetBusinessTypeActivity
+
+## gallery  (1 activities)
+  - GalleryActivity
+
+## youtube  (1 activities)
+  - YoutubePlayerActivity
+
+## arch  (1 activities)
+  - DownloadActivity
+
+## dynamic_form  (1 activities)
+  - DynamicFormActivity
+
+## camera  (1 activities)
+  - CameraActivity
+
+## MainActivity  (1 activities)
+  - MainActivity

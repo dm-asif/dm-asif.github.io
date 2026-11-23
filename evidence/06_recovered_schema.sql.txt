@@ -1,0 +1,160 @@
+# TallyKhata — Recovered Room/SQLite Schema (from classes*.dex string pools)
+# Source: literal SQL strings embedded in Room-generated DAO/Database _Impl classes.
+# Multiple variants per table reflect Room schema migrations (old->new versions); the longest
+# variant is shown as the most complete/recent snapshot recovered. No user data was extracted.
+
+## account  (2 distinct variant(s) recovered)
+CREATE TABLE IF NOT EXISTS `account` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `contact` TEXT NOT NULL, `type` INTEGER NOT NULL, `ac_date` TEXT NOT NULL, `start_balance` REAL NOT NULL, `description` TEXT, `create_date` TEXT NOT NULL, `synced` INTEGER NOT NULL, `is_updated` INTEGER NOT NULL DEFAULT 0, `last_update_date` TEXT, `is_active` INTEGER NOT NULL DEFAULT 1, `server_id` INTEGER, `synced_date` TEXT)
+
+CREATE TABLE IF NOT EXISTS `account` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `contact` TEXT NOT NULL, `type` INTEGER NOT NULL, `ac_date` TEXT NOT NULL, `start_balance` REAL NOT NULL, `description` TEXT, `create_date` TEXT NOT NULL, `synced` INTEGER NOT NULL, `share_link` TEXT, `last_share_media` TEXT, `is_updated` INTEGER NOT NULL DEFAULT 0, `last_update_date` TEXT, `is_active` INTEGER NOT NULL DEFAULT 1, `server_id` INTEGER, `synced_date` TEXT, `report_visibility` INTEGER NOT NULL DEFAULT 1)
+
+
+## account_media  (1 distinct variant(s) recovered)
+CREATE TABLE IF NOT EXISTS `account_media` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `file_name` TEXT NOT NULL, `is_profile` INTEGER NOT NULL, `path` TEXT NOT NULL, `account_id` INTEGER NOT NULL, `create_date` TEXT NOT NULL, `synced` INTEGER NOT NULL, `is_active` INTEGER NOT NULL DEFAULT 1, `server_id` INTEGER, FOREIGN KEY(`account_id`) REFERENCES `account`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )
+
+
+## cash_sales  (1 distinct variant(s) recovered)
+CREATE TABLE IF NOT EXISTS `cash_sales` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT, `amount` REAL NOT NULL, `time` TEXT NOT NULL, `sync_status` INTEGER NOT NULL)
+
+
+## cashbox_adjustment  (2 distinct variant(s) recovered)
+CREATE TABLE IF NOT EXISTS `cashbox_adjustment` (`id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `journal_id` INTEGER NOT NULL, `amount` REAL NOT NULL, `create_date` TEXT NOT NULL, `update_date` TEXT, `synced` INTEGER NOT NULL, FOREIGN KEY(`journal_id`) REFERENCES `journal`(`id`) ON DELETE CASCADE)
+
+CREATE TABLE IF NOT EXISTS `cashbox_adjustment` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `journal_id` INTEGER NOT NULL, `amount` REAL NOT NULL, `synced` INTEGER NOT NULL, `create_date` TEXT NOT NULL, `update_date` TEXT, FOREIGN KEY(`journal_id`) REFERENCES `journal`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )
+
+
+## closing_balance  (2 distinct variant(s) recovered)
+CREATE TABLE IF NOT EXISTS `closing_balance` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `amount` REAL NOT NULL, `closing_date` TEXT NOT NULL, `balance_generation_time` TEXT NOT NULL, `sync_status` INTEGER NOT NULL)
+
+CREATE TABLE IF NOT EXISTS `closing_balance` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `amount` REAL NOT NULL, `closing_date` TEXT NOT NULL, `balance_generation_time` TEXT NOT NULL, `sync_status` INTEGER NOT NULL, `is_updated` INTEGER NOT NULL DEFAULT 0, `last_update_date` TEXT)
+
+
+## costs  (1 distinct variant(s) recovered)
+CREATE TABLE IF NOT EXISTS `costs` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT, `amount` REAL NOT NULL, `type` INTEGER NOT NULL, `time` TEXT NOT NULL, `sync_status` INTEGER NOT NULL)
+
+
+## credit_collection_adjustment  (2 distinct variant(s) recovered)
+CREATE TABLE IF NOT EXISTS `credit_collection_adjustment` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `journal_id` INTEGER NOT NULL, `amount` REAL NOT NULL, `txn_no` TEXT NOT NULL, `txn_time` TEXT NOT NULL, `synced` INTEGER NOT NULL, `create_date` TEXT NOT NULL, `update_date` TEXT, FOREIGN KEY(`journal_id`) REFERENCES `journal`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )
+
+CREATE TABLE IF NOT EXISTS `credit_collection_adjustment` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `journal_id` INTEGER NOT NULL, `amount` REAL NOT NULL, `req_id` TEXT NOT NULL, `txn_no` TEXT NOT NULL, `txn_time` TEXT NOT NULL, `synced` INTEGER NOT NULL, `create_date` TEXT NOT NULL, `update_date` TEXT, FOREIGN KEY(`journal_id`) REFERENCES `journal`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )
+
+
+## credit_collection_adjustment_backup  (1 distinct variant(s) recovered)
+CREATE TABLE IF NOT EXISTS `credit_collection_adjustment_backup` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `journal_id` INTEGER NOT NULL, `amount` REAL NOT NULL, `txn_no` TEXT NOT NULL, `txn_time` TEXT NOT NULL, `synced` INTEGER NOT NULL, `create_date` TEXT NOT NULL, `update_date` TEXT, FOREIGN KEY(`journal_id`) REFERENCES `journal`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )
+
+
+## credits  (1 distinct variant(s) recovered)
+CREATE TABLE IF NOT EXISTS `credits` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT, `customer` INTEGER NOT NULL, `amount` REAL NOT NULL, `type` INTEGER NOT NULL, `time` TEXT NOT NULL, `note` TEXT, `sync_status` INTEGER NOT NULL, FOREIGN KEY(`customer`) REFERENCES `customers`(`_id`) ON UPDATE NO ACTION ON DELETE NO ACTION )
+
+
+## customers  (1 distinct variant(s) recovered)
+CREATE TABLE IF NOT EXISTS `customers` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `phone` TEXT, `credit` REAL NOT NULL, `time` REAL NOT NULL, `sync_status` INTEGER NOT NULL)
+
+
+## digital_sales  (1 distinct variant(s) recovered)
+CREATE TABLE IF NOT EXISTS `digital_sales` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT, `type` INTEGER NOT NULL, `sender` TEXT, `receiver` TEXT, `amount` REAL NOT NULL, `transaction_id` TEXT, `time` TEXT NOT NULL, `sync_status` INTEGER NOT NULL)
+
+
+## digital_transaction  (2 distinct variant(s) recovered)
+CREATE TABLE IF NOT EXISTS `digital_transaction` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `amount` REAL NOT NULL, `customer_id` TEXT, `from_name` TEXT NOT NULL, `from_wallet` TEXT NOT NULL, `purpose` TEXT, `to_name` TEXT NOT NULL, `toWallet` TEXT NOT NULL, `txn_number` TEXT NOT NULL, `txn_code` INTEGER NOT NULL, `txn_date` TEXT NOT NULL, `txn_type_name` TEXT NOT NULL, `account_id` INTEGER NOT NULL, `journal_id` INTEGER NOT NULL, `status` INTEGER NOT NULL, `create_date` TEXT NOT NULL, `synced` INTEGER NOT NULL, FOREIGN KEY(`journal_id`) REFERENCES `journal`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`account_id`) REFERENCES `account`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION)
+
+CREATE TABLE IF NOT EXISTS `digital_transaction` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `amount` REAL NOT NULL, `customer_id` TEXT, `from_name` TEXT NOT NULL, `from_wallet` TEXT NOT NULL, `purpose` TEXT, `to_name` TEXT NOT NULL, `toWallet` TEXT NOT NULL, `txn_number` TEXT NOT NULL, `txn_code` INTEGER NOT NULL, `txn_date` TEXT NOT NULL, `txn_type_name` TEXT NOT NULL, `account_id` INTEGER NOT NULL, `journal_id` INTEGER NOT NULL, `status` INTEGER NOT NULL, `create_date` TEXT NOT NULL, `synced` INTEGER NOT NULL, FOREIGN KEY(`journal_id`) REFERENCES `journal`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`account_id`) REFERENCES `account`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )
+
+
+## dynamic_form  (2 distinct variant(s) recovered)
+CREATE TABLE IF NOT EXISTS `dynamic_form`(`id` INTEGER PRIMARY KEY AUTOINCREMENT,`start_date` TEXT, `expiry_date` TEXT, `last_shown` TEXT,  `form_data` TEXT, `bulk_notification_id` INTEGER, `notification_id` INTEGER, `seen_count` INTEGER NOT NULL DEFAULT 0)
+
+CREATE TABLE IF NOT EXISTS `dynamic_form` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `bulk_notification_id` INTEGER, `start_date` TEXT, `received_date` TEXT, `sent_date` TEXT, `expiry_date` TEXT, `last_shown` TEXT, `form_data` TEXT, `notification_id` INTEGER, `seen_count` INTEGER NOT NULL DEFAULT 0)
+
+
+## dynamic_form_answer  (2 distinct variant(s) recovered)
+CREATE TABLE IF NOT EXISTS `dynamic_form_answer`(`id` INTEGER PRIMARY KEY AUTOINCREMENT,`form_id` INTEGER,`question_id` INTEGER,`submitted_at` TEXT, `question_type` TEXT, `answer_type` TEXT, `answers` TEXT, `file_path` TEXT, `synced` INTEGER NOT NULL)
+
+CREATE TABLE IF NOT EXISTS `dynamic_form_answer` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `form_id` INTEGER, `question_id` INTEGER, `submitted_at` TEXT, `form_sent_at` INTEGER NOT NULL, `question_type` TEXT, `answer_type` TEXT, `synced` INTEGER NOT NULL, `answers` TEXT, `file_path` TEXT)
+
+
+## event_logger  (2 distinct variant(s) recovered)
+CREATE TABLE IF NOT EXISTS `event_logger` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `event_name` TEXT NOT NULL, `event_start_time` TEXT NOT NULL, `sync_status` INTEGER NOT NULL)
+
+CREATE TABLE IF NOT EXISTS `event_logger` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `notification_id` INTEGER, `bulk_notification_id` INTEGER, `event_name` TEXT NOT NULL, `event_start_time` TEXT NOT NULL, `sync_status` INTEGER NOT NULL)
+
+
+## file_upload_history  (2 distinct variant(s) recovered)
+CREATE TABLE IF NOT EXISTS `file_upload_history`(`id` INTEGER PRIMARY KEY AUTOINCREMENT, `message_id` INTEGER NOT NULL,`file_type_id` INTEGER NOT NULL, `file_id` INTEGER NOT NULL, `capture_date` TEXT, `sync_date` TEXT, `description` TEXT, `title` TEXT NOT NULL, `is_live_photo` INTEGER NOT NULL , `resolution` TEXT NOT NULL, `upload_status` INTEGER NOT NULL, `uri` TEXT)
+
+CREATE TABLE IF NOT EXISTS `file_upload_history` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `message_id` INTEGER NOT NULL, `file_id` INTEGER NOT NULL, `file_type_id` INTEGER NOT NULL, `capture_date` TEXT, `title` TEXT NOT NULL, `uri` TEXT, `description` TEXT, `is_live_photo` INTEGER NOT NULL, `resolution` TEXT NOT NULL, `sync_date` TEXT, `upload_status` INTEGER NOT NULL)
+
+
+## gallery_media  (1 distinct variant(s) recovered)
+CREATE TABLE IF NOT EXISTS `gallery_media` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `file_name` TEXT NOT NULL, `path` TEXT NOT NULL, `create_date` TEXT NOT NULL, `synced` INTEGER NOT NULL, `is_active` INTEGER NOT NULL DEFAULT 1, `server_id` INTEGER)
+
+
+## inbox_message  (2 distinct variant(s) recovered)
+CREATE TABLE IF NOT EXISTS `inbox_message`(`id` INTEGER PRIMARY KEY AUTOINCREMENT, `server_id` INTEGER NOT NULL, `title` TEXT NOT NULL, `body` TEXT NOT NULL, `summary` TEXT NOT NULL, `clickable_text` TEXT, `type` TEXT NOT NULL, `create_date` TEXT NOT NULL, `expiry_date` TEXT, `content_type` TEXT, `http_link` TEXT, `thumbnail_url` TEXT NOT NULL, `full_image_url` TEXT NOT NULL,`action_id` INTEGER,`is_seen` INTEGER NOT NULL DEFAULT 0)
+
+CREATE TABLE IF NOT EXISTS `inbox_message` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `server_id` INTEGER NOT NULL, `bulk_notification_id` INTEGER, `type` TEXT NOT NULL, `is_seen` INTEGER NOT NULL DEFAULT 0, `content_type` TEXT, `create_date` TEXT NOT NULL, `expiry_date` TEXT, `http_link` TEXT, `title` TEXT NOT NULL, `summary` TEXT NOT NULL, `body` TEXT NOT NULL, `clickable_text` TEXT, `thumbnail_url` TEXT NOT NULL, `full_image_url` TEXT NOT NULL, `action_id` INTEGER, `notification_id` INTEGER, `acquirerId` TEXT, `transactionType` TEXT, `audible_on_open` INTEGER, `audible_title` INTEGER, `audible_content` INTEGER)
+
+
+## journal  (1 distinct variant(s) recovered)
+CREATE TABLE IF NOT EXISTS `journal` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `amount` REAL NOT NULL, `amount_received` REAL NOT NULL, `txn_type` INTEGER NOT NULL, `txn_mode` INTEGER NOT NULL, `description` TEXT, `txn_date` TEXT NOT NULL, `create_date` TEXT NOT NULL, `orig_account_id` INTEGER NOT NULL, `synced` INTEGER NOT NULL, `is_updated` INTEGER NOT NULL DEFAULT 0, `last_update_date` TEXT, `is_active` INTEGER NOT NULL DEFAULT 1, `server_id` INTEGER, `synced_date` TEXT, FOREIGN KEY(`orig_account_id`) REFERENCES `account`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )
+
+
+## journal_media  (1 distinct variant(s) recovered)
+CREATE TABLE IF NOT EXISTS `journal_media` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `file_name` TEXT NOT NULL, `path` TEXT NOT NULL, `journal_id` INTEGER NOT NULL, `create_date` TEXT NOT NULL, `synced` INTEGER NOT NULL, `is_active` INTEGER NOT NULL DEFAULT 1, `server_id` INTEGER, FOREIGN KEY(`journal_id`) REFERENCES `journal`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )
+
+
+## ledger  (1 distinct variant(s) recovered)
+CREATE TABLE IF NOT EXISTS `ledger` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `amount` REAL NOT NULL, `type` INTEGER NOT NULL, `journal_id` INTEGER NOT NULL, `account_id` INTEGER NOT NULL, `create_date` TEXT NOT NULL, `synced` INTEGER NOT NULL, `is_active` INTEGER NOT NULL DEFAULT 1, `server_id` INTEGER, FOREIGN KEY(`journal_id`) REFERENCES `journal`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`account_id`) REFERENCES `account`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )
+
+
+## locations  (1 distinct variant(s) recovered)
+CREATE TABLE IF NOT EXISTS `locations` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT, `event_type` INTEGER NOT NULL, `latitude` TEXT NOT NULL, `longitude` TEXT NOT NULL, `time` TEXT NOT NULL, `note` TEXT, `sync_status` INTEGER NOT NULL)
+
+
+## log  (1 distinct variant(s) recovered)
+CREATE TABLE IF NOT EXISTS `log` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `type` INTEGER NOT NULL, `before` TEXT NOT NULL, `after` TEXT, `create_date` TEXT NOT NULL, `synced` INTEGER NOT NULL, `server_id` INTEGER, `synced_date` TEXT)
+
+
+## opening_balance  (2 distinct variant(s) recovered)
+CREATE TABLE IF NOT EXISTS `opening_balance` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `amount` REAL NOT NULL, `input_date` TEXT NOT NULL, `sync_status` INTEGER NOT NULL)
+
+CREATE TABLE IF NOT EXISTS `opening_balance` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `amount` REAL NOT NULL, `input_date` TEXT NOT NULL, `sync_status` INTEGER NOT NULL, `is_updated` INTEGER NOT NULL DEFAULT 0, `last_update_date` TEXT)
+
+
+## popup_message  (2 distinct variant(s) recovered)
+CREATE TABLE IF NOT EXISTS `popup_message`(`id` INTEGER PRIMARY KEY AUTOINCREMENT, `server_id` INTEGER NOT NULL, `title` TEXT, `body` TEXT,`button_text` TEXT NOT NULL, `display_type` TEXT NOT NULL, `start_date` TEXT NOT NULL, `expiry_date` TEXT, `received_date` TEXT, `sent_date` TEXT, `last_shown` TEXT, `action_type` TEXT NOT NULL, `action_data` TEXT, `image_url` TEXT NOT NULL,`inbox_id` INTEGER, `min_delay` INTEGER NOT NULL DEFAULT 0,`seen_count` INTEGER NOT NULL DEFAULT 0)
+
+CREATE TABLE IF NOT EXISTS `popup_message` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `server_id` INTEGER NOT NULL, `bulk_notification_id` INTEGER, `display_type` TEXT NOT NULL, `seen_count` INTEGER NOT NULL DEFAULT 0, `action_type` TEXT NOT NULL, `action_data` TEXT, `start_date` TEXT NOT NULL, `expiry_date` TEXT, `sent_date` TEXT, `received_date` TEXT, `last_shown` TEXT, `min_delay` INTEGER NOT NULL DEFAULT 0, `title` TEXT, `body` TEXT, `button_text` TEXT NOT NULL, `image_url` TEXT NOT NULL, `inbox_id` INTEGER, `skip_duration_in_seconds` INTEGER, `in_screen_to_show` TEXT, `video_url` TEXT, `notification_id` INTEGER, `audible_on_open` INTEGER, `audible_title` INTEGER, `audible_content` INTEGER)
+
+
+## recharge_packages  (1 distinct variant(s) recovered)
+CREATE TABLE IF NOT EXISTS `recharge_packages` (`id` INTEGER NOT NULL, `operator` TEXT NOT NULL, `connectionType` TEXT NOT NULL, `category` TEXT, `internetBandwidth` TEXT, `bandwidthUnit` TEXT, `talkTime` INTEGER, `talkTimeUnit` TEXT, `callRate` REAL, `callRateUnit` TEXT, `callRateUnitTime` TEXT, `callRatePulse` INTEGER, `callRatePulseUnit` TEXT, `smsCount` INTEGER, `others` TEXT, `amount` REAL NOT NULL, `validity` TEXT, `validityUnit` TEXT, `packageCommissionReceive` REAL, `packageCommissionOffer` REAL, `offerTag` TEXT, `published` INTEGER, `startDate` TEXT, `expiryDate` TEXT, `createdAt` TEXT NOT NULL, `updatedAt` TEXT, `remarks` TEXT, `order` INTEGER, PRIMARY KEY(`id`))
+
+
+## reconciliations  (1 distinct variant(s) recovered)
+CREATE TABLE IF NOT EXISTS `reconciliations` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT, `time` TEXT NOT NULL, `opening_balance` REAL NOT NULL, `other_cash_sales` REAL NOT NULL, `other_credit_sales` REAL NOT NULL, `closing_balance` REAL NOT NULL, `sync_status` INTEGER NOT NULL)
+
+
+## supplier_payment_adjustment  (2 distinct variant(s) recovered)
+CREATE TABLE IF NOT EXISTS `supplier_payment_adjustment` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `journal_id` INTEGER NOT NULL, `amount` REAL NOT NULL,`txn_charge` REAL,`wallet_balance` REAL, `txn_no` TEXT NOT NULL, `txn_time` TEXT NOT NULL, `from_wallet` TEXT, `to_wallet` TEXT NOT NULL,`txn_type` TEXT NOT NULL, `synced` INTEGER NOT NULL, `create_date` TEXT NOT NULL, `update_date` TEXT, FOREIGN KEY(`journal_id`) REFERENCES `journal`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )
+
+CREATE TABLE IF NOT EXISTS `supplier_payment_adjustment` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `journal_id` INTEGER NOT NULL, `amount` REAL NOT NULL, `txn_charge` REAL, `wallet_balance` REAL, `txn_no` TEXT NOT NULL, `txn_time` TEXT NOT NULL, `from_wallet` TEXT, `to_wallet` TEXT NOT NULL, `txn_type` TEXT NOT NULL, `synced` INTEGER NOT NULL, `create_date` TEXT NOT NULL, `update_date` TEXT, FOREIGN KEY(`journal_id`) REFERENCES `journal`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )
+
+
+## suppliers  (1 distinct variant(s) recovered)
+CREATE TABLE IF NOT EXISTS `suppliers` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `phone` TEXT, `due_payment` REAL NOT NULL, `time` REAL NOT NULL, `sync_status` INTEGER NOT NULL)
+
+
+## supplies  (1 distinct variant(s) recovered)
+CREATE TABLE IF NOT EXISTS `supplies` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT, `supplier` INTEGER NOT NULL, `sender` TEXT, `receiver` TEXT, `type` INTEGER NOT NULL, `amount` REAL NOT NULL, `transaction_id` TEXT, `time` TEXT NOT NULL, `note` TEXT, `sync_status` INTEGER NOT NULL, FOREIGN KEY(`supplier`) REFERENCES `suppliers`(`_id`) ON UPDATE NO ACTION ON DELETE NO ACTION )
+
+
+## tagada_log  (2 distinct variant(s) recovered)
+CREATE TABLE IF NOT EXISTS `tagada_log` (`id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `account_id` INTEGER NOT NULL, `create_date` TEXT NOT NULL, `credit_amount` REAL, `tagada_type` TEXT, `synced` INTEGER NOT NULL, FOREIGN KEY(`account_id`) REFERENCES `account`(`id`) ON DELETE CASCADE)
+
+CREATE TABLE IF NOT EXISTS `tagada_log` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `account_id` INTEGER NOT NULL, `tagada_type` TEXT, `credit_amount` REAL, `synced` INTEGER NOT NULL, `create_date` TEXT NOT NULL, FOREIGN KEY(`account_id`) REFERENCES `account`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )
+
+
+## transaction_settlement_action  (1 distinct variant(s) recovered)
+CREATE TABLE IF NOT EXISTS `transaction_settlement_action` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `transaction_number` TEXT NOT NULL, `action_type` TEXT NOT NULL, `synced` INTEGER NOT NULL, `create_date` TEXT NOT NULL, `update_date` TEXT)
+

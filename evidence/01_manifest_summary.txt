@@ -1,0 +1,355 @@
+MANIFEST SUMMARY (decoded from AndroidManifest.xml, 93136 bytes)
+package=com.progoti.tallykhata versionCode=171 versionName=6.6.1 compileSdk=34
+minSdk=21 targetSdk=34
+
+APPLICATION ATTRS:
+  theme = @0x7f130019
+  label = @0x7f1200bc
+  icon = @0x7f0f0000
+  name = com.progoti.tallykhata.v2.TallykhataApplication
+  allowBackup = false
+  supportsRtl = true
+  usesCleartextTraffic = false
+  roundIcon = @0x7f0f0002
+  appComponentFactory = androidx.core.app.CoreComponentFactory
+
+USES-PERMISSION (19):
+  android.permission.POST_NOTIFICATIONS
+  android.permission.ACCESS_WIFI_STATE
+  android.permission.ACCESS_NETWORK_STATE
+  android.permission.READ_CONTACTS
+  android.permission.INTERNET
+  android.permission.CAMERA
+  android.permission.ACCESS_COARSE_LOCATION
+  android.permission.ACCESS_FINE_LOCATION
+  android.permission.READ_PHONE_STATE
+  android.permission.VIBRATE
+  android.permission.WAKE_LOCK
+  com.google.android.c2dm.permission.RECEIVE
+  com.google.android.gms.permission.AD_ID
+  android.permission.WRITE_EXTERNAL_STORAGE [maxSdk=28]
+  android.permission.READ_EXTERNAL_STORAGE
+  android.permission.USE_FINGERPRINT
+  com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE
+  android.permission.FOREGROUND_SERVICE
+  com.progoti.tallykhata.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+
+DECLARED PERMISSIONS (1):
+  {'name': 'com.progoti.tallykhata.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION', 'protectionLevel': '0x2'}
+
+USES-FEATURE (8):
+  android.hardware.Camera required=false 
+  android.hardware.camera2.full required=false 
+  android.hardware.camera required=true 
+  android.hardware.camera.autofocus required=false 
+  android.hardware.camera.front required=false 
+  android.hardware.camera.flash required=false 
+  android.hardware.screen.landscape required=false 
+  android.hardware.wifi required=false 
+
+ACTIVITY (209 total; app-origin=197)
+ACTIVITY-ALIAS (0 total; app-origin=0)
+SERVICE (18 total; app-origin=2)
+RECEIVER (15 total; app-origin=1)
+PROVIDER (8 total; app-origin=0)
+
+=== ACTIVITY ===
+  [app] com.progoti.tallykhata.v2.tallypay.limit.TransactionLimitActivity exported=false 
+  [app] com.progoti.tallykhata.v2.tallypay.ekyc.NIDVerificationActivity exported=false launch=1
+  [app] com.progoti.tallykhata.v2.tallypay.ekyc.EkycInitActivity exported=false 
+  [app] com.progoti.tallykhata.v2.activities.TooltipActivity exported=false 
+  [app] com.progoti.tallykhata.v2.tallypay.activities.digital_onboard.DigitalOnboardActivity exported=false 
+  [app] com.progoti.tallykhata.v2.payments.bkash.BuyTallySmsPinActivity exported=false 
+  [app] com.progoti.tallykhata.v2.cstxn.TxnShareActivity exported=false 
+  [app] com.progoti.tallykhata.v2.tallypay.views.TransactionErrorActivity exported=false 
+  [app] com.progoti.tallykhata.v2.tallypay.digital_sale.DigitalSaleSuccessActivity exported=false 
+  [app] com.progoti.tallykhata.v2.tallypay.activities.pendingaccounts.PendingBankAccountVerifyActivity exported=false 
+  [app] com.progoti.tallykhata.v2.tallypay.activities.qrScanner.QrCaptureActivity exported=false 
+  [app] com.progoti.tallykhata.v2.tallypay.activities.qrScanner.BanglaQrCaptureActivity exported=false 
+  [app] com.progoti.tallykhata.v2.tallypay.limit.LimitChargeActivity exported=false 
+  [app] com.progoti.tallykhata.v2.tallypay.activities.registration.link_mobile_banking.LinkMobileBankOtpVerificationActivity exported=false 
+  [app] com.progoti.tallykhata.v2.login.MigrateTPPinPromptActivity exported=false 
+  [app] com.progoti.tallykhata.v2.login.PinBlockedActivity exported=false 
+  [app] com.progoti.tallykhata.v2.customer_onboard.WalletLookUpAndDecideDestinationActivity exported=false 
+  [app] com.progoti.tallykhata.v2.tallypay.accountManager.AccountManagerActivity exported=false 
+  [app] com.progoti.tallykhata.v2.activities.InboxActivity exported=false 
+  [app] com.progoti.tallykhata.v2.tallypay.activities.money_out.TpTransferActivity exported=false 
+  [app] com.progoti.tallykhata.v2.tallypay.activities.registration.link_mobile_banking.LinkMobileBankAccountActivity exported=false 
+  [app] com.progoti.tallykhata.v2.tallypay.dashboard.TpPromoDetailsActivity exported=false 
+  [app] com.progoti.tallykhata.v2.tallypay.views.GenericTaskDoneActivity exported=false 
+  [app] com.progoti.tallykhata.v2.tallypay.activities.addaccounts.TpDeleteBankAccountActivity exported=false 
+  [app] com.progoti.tallykhata.v2.tallypay.activities.qrScanner.QrScannerActivity exported=false 
+  [app] com.progoti.tallykhata.v2.tallypay.activities.profile.qr.TpProfileQrActivity exported=false 
+  [app] com.progoti.tallykhata.v2.tallypay.activities.documentUpload.DocumentUploadActivity exported=false 
+  [app] com.progoti.tallykhata.v2.tallypay.activities.tradeLicense.TradeLicenseActivity exported=false 
+  [app] com.progoti.tallykhata.v2.tallypay.activities.profile.TpNomineeInfoEditActivity exported=false 
+  [app] com.progoti.tallykhata.v2.tallypay.activities.profile.TpNomineeInfoActivity exported=false 
+  [app] com.progoti.tallykhata.v2.tallypay.activities.transaction.transactionhistory.TpEachTransactionDetailsActivity exported=false 
+  [app] com.progoti.tallykhata.v2.tallypay.activities.transaction.transactionhistory.TransactionHistoryActivity exported=false 
+  [app] com.progoti.tallykhata.v2.tallypay.activities.addmoney.addmoneyfromNagad.AddMoneyNagadWebViewActivity exported=false 
+  [app] com.progoti.tallykhata.v2.tallypay.activities.addmoney.addmoneyfromrocket.AddMoneyRocketWebViewActivity exported=false 
+  [app] com.progoti.tallykhata.v2.tallypay.activities.addmoney.addmoneyfromcard.AddMoneyWebViewActivity exported=false 
+  [app] com.progoti.tallykhata.v2.tallypay.aday_kori.SendAdaySmsActivity exported=false 
+  [app] com.progoti.tallykhata.v2.tallypay.aday_kori.SelectCustomerForAdayActivity exported=false 
+  [app] com.progoti.tallykhata.v2.tallypay.views.GenericSuccessActivity exported=false 
+  [app] com.progoti.tallykhata.v2.tallypay.activities.sendmoney.TpSendMoneyActivity exported=false 
+  [app] com.progoti.tallykhata.v2.tallypay.activities.registration.CongratulationsActivity exported=false 
+  [app] com.progoti.tallykhata.v2.tallypay.activities.transaction.transactiondetails.TpPendingTransactionDetailsActivity exported=false 
+  [app] com.progoti.tallykhata.v2.activities.AppSecurityActivity exported=false 
+  [app] com.progoti.tallykhata.v2.tallypay.activities.addmoney.addmoneyfromNagad.AddMoneyFromNagadActivity exported=false 
+  [app] com.progoti.tallykhata.v2.tallypay.activities.addmoney.addmoneyfromrocket.AddMoneyFromRocketActivity exported=false 
+  [app] com.progoti.tallykhata.v2.tallypay.activities.addmoney.addmoneyfromcard.AddMoneyFromCardActivity exported=false 
+  [app] com.progoti.tallykhata.v2.tallypay.activities.addmoney.addmoneyfrombank.AddMoneyFromBankActivity exported=false 
+  [app] com.progoti.tallykhata.v2.tallypay.activities.registration.TpWalletPinSetActivity exported=false 
+  [app] com.progoti.tallykhata.v2.tallypay.dashboard.TpWalletAllServicesActivity exported=false 
+  [app] com.progoti.tallykhata.v2.tallypay.activities.payment.TpPaymentActivity exported=false 
+  [app] com.progoti.tallykhata.v2.tallypay.activities.addmoney.AddMoneyActivity exported=false 
+  [app] com.progoti.tallykhata.v2.tallypay.activities.registration.TpWalletRegistrationActivity exported=false 
+  [app] com.progoti.tallykhata.v2.tallypay.activities.registration.ImageUploadActivity exported=false 
+  [app] com.progoti.tallykhata.v2.tallypay.activities.registration.NomineeInfoActivity exported=false 
+  [app] com.progoti.tallykhata.v2.tallypay.activities.registration.NidInfoActivity exported=false 
+  [app] com.progoti.tallykhata.v2.tallypay.BusinessInfoChoiceActivity exported=false 
+  [app] com.progoti.tallykhata.v2.tallypay.TpCaptureNidSuccessActivity exported=false 
+  [app] com.progoti.tallykhata.v2.payments.bkash.FailedFullScreenActivity exported=false 
+  [app] com.progoti.tallykhata.v2.login.WalletLoginActivity exported=false 
+  [app] com.progoti.tallykhata.v2.payments.bkash.BuySmsSuccessActivity exported=false 
+  [app] com.progoti.tallykhata.v2.payments.bkash.BuySmsActivity exported=false 
+  [app] com.progoti.tallykhata.v2.payments.bkash.bkash_checkout.BkashPaymentSuccessActivity exported=false 
+  [app] com.progoti.tallykhata.v2.payments.bkash.bkash_checkout.BkashCheckoutActivity exported=false 
+  [app] com.progoti.tallykhata.v2.reports.SmsReportActivity exported=true 
+  [app] com.progoti.tallykhata.v2.cashbox.CashBoxEntryEditAcitvity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.cashbox.CashBoxTodayActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.reports.cashbox_reports.GenericCashBoxReportActivity exported=true 
+  [app] com.progoti.tallykhata.v2.reports.DailyCashExpenseReportActivity exported=true 
+  [app] com.progoti.tallykhata.v2.edit_delete_cash_box_txn.CashBoxTxnEditActivity exported=true 
+  [app] com.progoti.tallykhata.v2.reports.DailyCashKenaReportActivity exported=true 
+  [app] com.progoti.tallykhata.v2.edit_delete_cash_box_txn.ConfirmCashBoxEditDeleteWithPIN exported=true 
+  [app] com.progoti.tallykhata.v2.login.PostVerificationDeviceChooserActivity exported=true 
+  [app] com.progoti.tallykhata.v2.data_backup.PromptAccountChooserActivity exported=true 
+  [app] com.progoti.tallykhata.v2.activities.ShowUnverifiedNumberActivity exported=true 
+  [app] com.progoti.tallykhata.v2.cashbox.PreviousDayCashAdjustmentSuccess exported=true 
+  [app] com.progoti.tallykhata.v2.report_download.CashBoxDetailPdfActivity exported=true 
+  [app] com.progoti.tallykhata.v2.report_download.CashBoxSummeryPdfActivity exported=true 
+  [app] com.progoti.tallykhata.v2.report_download.CashReportSummeryPdfActivity exported=true 
+  [app] com.progoti.tallykhata.v2.cashbox.PreviousDayCashAdjustmentConfirmationNegativeActivity exported=true 
+  [app] com.progoti.tallykhata.v2.cashbox.PreviousDayCashAdjustmentConfirmationEvenActivity exported=true 
+  [app] com.progoti.tallykhata.v2.cashbox.PreviousDayCashAdjustmentConfirmationPositiveActivity exported=true 
+  [app] com.progoti.tallykhata.v2.cashbox.PreviousDayCashAdjustmentActivity exported=true 
+  [app] com.progoti.tallykhata.v2.report_download.DailyExpensePdfBuilderActivity exported=true 
+  [app] com.progoti.tallykhata.v2.report_download.MonthlyExpensePdfBuilderActivity exported=true 
+  [app] com.progoti.tallykhata.v2.report_download.MonthlyBakiPdfBuilderActivity exported=true 
+  [app] com.progoti.tallykhata.v2.report_download.DailyBakiPdfBuilderActivity exported=true 
+  [app] com.progoti.tallykhata.v2.report_download.BechaKenaSummaryPdfActivity exported=true 
+  [app] com.progoti.tallykhata.v2.report_download.DailyBechaKenaDetailPdfActivity exported=true 
+  [app] com.progoti.tallykhata.v2.report_download.MonthlyBechaKenaDetailPdfActivity exported=true 
+  [app] com.progoti.tallykhata.v2.reports.BakiReportActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.report_download.MalikPdfReportBuilderActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.reports.BechaKenaReportActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.reports.DailyCashBechaReportActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.cashbox.CashAdjustmentActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.cashbox.TKSuccessActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.cashbox.CashAdjustmentSuccessPositiveActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.cashbox.CashAdjustmentConfirmationNegativeActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.cashbox.CashAdjustmentConfirmationPositiveActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.cashbox.CashAdjustmentConfirmationEvenActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.supplier_txn.SupplierTxnSuccessActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.reports.MalikReportActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.edit_delete_malik_txn.MalikTxnEditActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.edit_delete_malik_txn.MalikEditDeleteSuccessActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.edit_delete_malik_txn.ConfirmMalikTxnWithPinActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.edit_delete_malik_txn.MalikTxnEditDeleteSelectionActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.edit_delete_cash_box_txn.CashBoxTxnEditDeleteSelectionActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.reports.CashReportActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.tagada.TagadaActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.tagada.TagadaSelectionActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.edit_jer.JerEditConfirmationActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.edit_jer.ConfirmEditJerWithPIN exported=false(default) 
+  [app] com.progoti.tallykhata.v2.edit_jer.EditJerActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.edit_jer.EditJerInfoActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.customer_onboard.ShopNameEntryActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.dialogs.BusinessTypeSuccessDialogActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.GetBusinessTypeActivity exported=true 
+  [app] com.progoti.tallykhata.v2.data_backup.DataBackupActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.activities.ReferralActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.customer_onboard.MobileVerificationForUnverifiedUserActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.activities.DailyReportActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.report_download.CustomerListReportBuilderActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.report_download.TxnListReportBuilderActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.gallery.GalleryActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.youtube.YoutubePlayerActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.activities.ImageUploadPreviewActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.tallypay.ekyc.ImageCaptureActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.activities.HeadsUpNotificationActivity exported=false(default) launch=2
+  [app] com.progoti.tallykhata.v2.activities.WebViewActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.edit_delete_cash_txn.CashTxnEditActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.edit_delete_cash_txn.CashTxnEditDeleteSuccess exported=false(default) 
+  [app] com.progoti.tallykhata.v2.edit_delete_cash_txn.ConfirmCashEditDeleteWithPIN exported=false(default) 
+  [app] com.progoti.tallykhata.v2.edit_delete_cash_txn.CashTxnEditDeleteSelectionActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.activities.CashDetailsActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.activities.NotificationDetailsActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.edit_delete_transaction.EditTransactionActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.edit_delete_transaction.TransactionEditDeleteSuccess exported=false(default) 
+  [app] com.progoti.tallykhata.v2.edit_delete_transaction.ConfirmTxnEditDeleteWithPIN exported=false(default) 
+  [app] com.progoti.tallykhata.v2.edit_delete_transaction.EditDeleteTransactionActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.edit_delete_customer.DeleteCustomerSupplierActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.edit_delete_customer.EditDeleteCustomerConfirmWithPIN exported=false(default) 
+  [app] com.progoti.tallykhata.v2.edit_delete_customer.CustomerEditDeleteSuccessActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.edit_delete_customer.EditCustomerSupplierActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.login.PinResetVerifiedFaceImageUpload exported=false(default) 
+  [app] com.progoti.tallykhata.v2.activities.HelpActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.activities.SettingsActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.arch.sync.server_to_device.DownloadActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.activities.Terms_n_ConditionsActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.activities.CreditEntrySuccessActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.surecash.activities.ScSupplierPaymentActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.surecash.activities.ScCreditSettlementConfirmationActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.surecash.activities.ScCreditSettlementActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.surecash.activities.ScCashOutActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.surecash.activities.ScWalletActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.surecash.activities.ScCashOutAgentInputActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.surecash.activities.ScTransactionDetailsActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.activities.MonthlyStatementActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.activities.MonthlyCreditActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.reports.ExpenseReportActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.reports.DailyBuySaleReportActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.cstxn.CreditEntryActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.add_customer.CSAddActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.add_customer.AddCustomerSupplier exported=false(default) 
+  [app] com.progoti.tallykhata.v2.login.ForgotPinActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.login.PinSetupActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.login.EKYCPinSetupActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.login.PinResetSetupActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.login.PinChangeSetupActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.login.TallykhataBasicPinSetupActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.dynamic_form.activity.DynamicFormActivity exported=false(default) launch=1
+  [app] com.progoti.tallykhata.v2.login.LoginActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.customer_onboard.OtpVerificationActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.customer_onboard.SignUpForExistingUserActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.profile.EditProfileActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.customer_onboard.OnBoardingActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.customer_onboard.SplashScreenActivity exported=true 
+      filter: actions=['android.intent.action.MAIN'] cats=['LAUNCHER'] data=
+  [app] com.progoti.tallykhata.v2.activities.CustomerReportActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.cashbox.CashSellActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.camera.CameraActivity exported=false(default) launch=3
+  [app] com.progoti.tallykhata.v2.customer_onboard.AuthInitActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.MainActivity exported=true launch=2
+      filter: actions=['android.intent.action.VIEW'] cats=['DEFAULT', 'BROWSABLE'] data=https://www.tallykhata.com/openActivity
+  [app] com.progoti.tallykhata.v2.profile.ProfileActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.activities.MonthlyCashActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.tallypay.TpWalletActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.tallypay.activities.addaccounts.AddNewBankAccountActivity exported=false(default) 
+  [app] com.progoti.tallykhata.v2.tallypay.activities.recharge.TpRechargeActivity exported=false(default) 
+  [app] com.progoti.surecash.paymentsdk.components.pinchange.PINChange exported=false(default) 
+  [app] com.progoti.surecash.paymentsdk.components.pinchange.OtpInputPinChange exported=false(default) 
+  [app] com.progoti.surecash.paymentsdk.components.pinchange.MobileInput exported=false(default) 
+  [app] com.progoti.surecash.paymentsdk.components.otp.OtpInputActivity exported=false(default) 
+  [app] com.progoti.surecash.paymentsdk.components.reversepayment.ReversePayment exported=false(default) 
+  [app] com.progoti.surecash.paymentsdk.components.payment.supplierPayment.SupplierPayment exported=false(default) 
+  [app] com.progoti.surecash.paymentsdk.components.login.LoginActivity exported=false(default) 
+  [app] com.progoti.surecash.paymentsdk.components.payment.PaymentActivity exported=false(default) 
+  [app] com.progoti.surecash.paymentsdk.components.payment.CashOut exported=false(default) 
+  [app] com.progoti.surecash.paymentsdk.components.walletconfiguration.fingerprint.RegisterFingerPrintActivity exported=false(default) 
+  [app] com.progoti.surecash.paymentsdk.components.payment.PaymentDetailActivity exported=false(default) 
+  [app] com.progoti.surecash.paymentsdk.components.walletconfiguration.addWallet.AddWalletActivity exported=false(default) 
+  [app] com.progoti.surecash.paymentsdk.components.walletconfiguration.WalletDetailsActivity exported=false(default) 
+  [3rd-party/lib] com.psl.tkpicker.ImagePickerActivity exported=false(default) 
+  [3rd-party/lib] com.yalantis.ucrop.UCropActivity exported=false(default) 
+  [3rd-party/lib] com.facebook.FacebookActivity exported=false(default) 
+  [3rd-party/lib] com.facebook.CustomTabMainActivity exported=false(default) 
+  [3rd-party/lib] com.facebook.CustomTabActivity exported=true 
+      filter: actions=['android.intent.action.VIEW'] cats=['DEFAULT', 'BROWSABLE'] data=fbconnect://cct.com.progoti.tallykhata
+  [3rd-party/lib] com.google.android.gms.auth.api.signin.internal.SignInHubActivity exported=false 
+  [3rd-party/lib] com.google.android.gms.common.api.GoogleApiActivity exported=false 
+  [3rd-party/lib] com.google.android.gms.ads.AdActivity exported=false 
+  [3rd-party/lib] com.google.android.gms.ads.OutOfContextTestingActivity exported=false 
+  [3rd-party/lib] com.google.android.play.core.missingsplits.PlayCoreMissingSplitsActivity exported=false launch=3 proc=:playcore_missing_splits_activity
+  [3rd-party/lib] com.google.android.play.core.common.PlayCoreDialogWrapperActivity exported=false 
+  [3rd-party/lib] com.journeyapps.barcodescanner.CaptureActivity exported=false(default) 
+
+=== ACTIVITY-ALIAS ===
+
+=== SERVICE ===
+  [app] com.progoti.tallykhata.v2.fcm.PushNotificationMessageService exported=false 
+      filter: actions=['com.google.firebase.MESSAGING_EVENT', 'com.google.firebase.INSTANCE_ID_EVENT'] cats=[] data=
+  [app] com.progoti.tallykhata.v2.tallypay.services.ShakeService exported=false(default) 
+  [3rd-party/lib] com.google.firebase.components.ComponentDiscoveryService exported=false 
+  [3rd-party/lib] androidx.camera.core.impl.MetadataHolderService exported=false 
+  [3rd-party/lib] com.google.android.gms.auth.api.signin.RevocationBoundService exported=true perm=com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION
+  [3rd-party/lib] com.google.mlkit.common.internal.MlKitComponentDiscoveryService exported=false 
+  [3rd-party/lib] com.google.firebase.messaging.FirebaseMessagingService exported=false 
+      filter: actions=['com.google.firebase.MESSAGING_EVENT'] cats=[] data=
+  [3rd-party/lib] com.google.android.gms.ads.AdService exported=false 
+  [3rd-party/lib] com.google.android.gms.measurement.AppMeasurementService exported=false 
+  [3rd-party/lib] com.google.android.gms.measurement.AppMeasurementJobService exported=false perm=android.permission.BIND_JOB_SERVICE
+  [3rd-party/lib] androidx.work.impl.background.systemalarm.SystemAlarmService exported=false 
+  [3rd-party/lib] androidx.work.impl.background.systemjob.SystemJobService exported=true perm=android.permission.BIND_JOB_SERVICE
+  [3rd-party/lib] androidx.work.impl.foreground.SystemForegroundService exported=false 
+  [3rd-party/lib] com.google.android.datatransport.runtime.backends.TransportBackendDiscovery exported=false 
+  [3rd-party/lib] androidx.room.MultiInstanceInvalidationService exported=false 
+  [3rd-party/lib] com.google.android.play.core.assetpacks.AssetPackExtractionService exported=true 
+  [3rd-party/lib] com.google.android.play.core.assetpacks.ExtractionForegroundService exported=false 
+  [3rd-party/lib] com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService exported=false perm=android.permission.BIND_JOB_SERVICE
+
+=== RECEIVER ===
+  [app] com.progoti.tallykhata.v2.sms_auto_read.TKSMSReceiver exported=true 
+      filter: actions=['com.google.android.gms.auth.api.phone.SMS_RETRIEVED'] cats=[] data=
+  [3rd-party/lib] com.google.firebase.iid.FirebaseInstanceIdReceiver exported=true perm=com.google.android.c2dm.permission.SEND
+      filter: actions=['com.google.android.c2dm.intent.RECEIVE'] cats=[] data=
+  [3rd-party/lib] com.google.android.gms.measurement.AppMeasurementReceiver exported=false 
+  [3rd-party/lib] com.facebook.CurrentAccessTokenExpirationBroadcastReceiver exported=false 
+      filter: actions=['com.facebook.sdk.ACTION_CURRENT_ACCESS_TOKEN_CHANGED'] cats=[] data=
+  [3rd-party/lib] com.facebook.AuthenticationTokenManager$CurrentAuthenticationTokenChangedBroadcastReceiver exported=false 
+      filter: actions=['com.facebook.sdk.ACTION_CURRENT_AUTHENTICATION_TOKEN_CHANGED'] cats=[] data=
+  [3rd-party/lib] androidx.work.impl.utils.ForceStopRunnable$BroadcastReceiver exported=false 
+  [3rd-party/lib] androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryChargingProxy exported=false 
+      filter: actions=['android.intent.action.ACTION_POWER_CONNECTED', 'android.intent.action.ACTION_POWER_DISCONNECTED'] cats=[] data=
+  [3rd-party/lib] androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryNotLowProxy exported=false 
+      filter: actions=['android.intent.action.BATTERY_OKAY', 'android.intent.action.BATTERY_LOW'] cats=[] data=
+  [3rd-party/lib] androidx.work.impl.background.systemalarm.ConstraintProxy$StorageNotLowProxy exported=false 
+      filter: actions=['android.intent.action.DEVICE_STORAGE_LOW', 'android.intent.action.DEVICE_STORAGE_OK'] cats=[] data=
+  [3rd-party/lib] androidx.work.impl.background.systemalarm.ConstraintProxy$NetworkStateProxy exported=false 
+      filter: actions=['android.net.conn.CONNECTIVITY_CHANGE'] cats=[] data=
+  [3rd-party/lib] androidx.work.impl.background.systemalarm.RescheduleReceiver exported=false 
+      filter: actions=['android.intent.action.BOOT_COMPLETED', 'android.intent.action.TIME_SET', 'android.intent.action.TIMEZONE_CHANGED'] cats=[] data=
+  [3rd-party/lib] androidx.work.impl.background.systemalarm.ConstraintProxyUpdateReceiver exported=false 
+      filter: actions=['androidx.work.impl.background.systemalarm.UpdateProxies'] cats=[] data=
+  [3rd-party/lib] androidx.work.impl.diagnostics.DiagnosticsReceiver exported=true perm=android.permission.DUMP
+      filter: actions=['androidx.work.diagnostics.REQUEST_DIAGNOSTICS'] cats=[] data=
+  [3rd-party/lib] com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver exported=false 
+  [3rd-party/lib] androidx.profileinstaller.ProfileInstallReceiver exported=true perm=android.permission.DUMP
+      filter: actions=['androidx.profileinstaller.action.INSTALL_PROFILE'] cats=[] data=
+      filter: actions=['androidx.profileinstaller.action.SKIP_FILE'] cats=[] data=
+      filter: actions=['androidx.profileinstaller.action.SAVE_PROFILE'] cats=[] data=
+      filter: actions=['androidx.profileinstaller.action.BENCHMARK_OPERATION'] cats=[] data=
+
+=== PROVIDER ===
+  [3rd-party/lib] androidx.core.content.FileProvider exported=false auth=com.progoti.tallykhata.fileprovider
+  [3rd-party/lib] com.psl.tkpicker.ImagePickerFileProvider exported=false auth=com.progoti.tallykhata.imagepicker.provider
+  [3rd-party/lib] com.google.mlkit.common.internal.MlKitInitProvider exported=false auth=com.progoti.tallykhata.mlkitinitprovider
+  [3rd-party/lib] com.google.firebase.provider.FirebaseInitProvider exported=false auth=com.progoti.tallykhata.firebaseinitprovider
+  [3rd-party/lib] com.google.android.gms.ads.MobileAdsInitProvider exported=false auth=com.progoti.tallykhata.mobileadsinitprovider
+  [3rd-party/lib] com.facebook.internal.FacebookInitProvider exported=false auth=com.progoti.tallykhata.FacebookInitProvider
+  [3rd-party/lib] androidx.startup.InitializationProvider exported=false auth=com.progoti.tallykhata.androidx-startup
+  [3rd-party/lib] com.squareup.picasso.PicassoProvider exported=false auth=com.progoti.tallykhata.com.squareup.picasso
+
+APPLICATION META-DATA (16):
+  com.google.android.gms.ads.APPLICATION_ID = ca-app-pub-3446615224999899~8487383855 
+  com.google.android.gms.ads.flag.OPTIMIZE_INITIALIZATION = true 
+  com.google.android.gms.ads.flag.OPTIMIZE_AD_LOADING = true 
+  com.facebook.sdk.ApplicationId = @0x7f1203bb 
+  com.facebook.sdk.ClientToken = @0x7f1203bc 
+  com.surecash.sdk.api_base_url = @0x7f120934 
+  surecash-client-name = Uthao 
+  surecash-client-id = uthao 
+  preloaded_fonts = None res=@0x7f030008
+  surecash-client-key = abcd457865938sdjhf 
+  com.google.android.gms.version = @0x7f0b0008 
+  com.android.dynamic.apk.fused.modules = base 
+  com.android.stamp.source = https://play.google.com/store 
+  com.android.stamp.type = STAMP_TYPE_STANDALONE_APK 
+  com.android.vending.splits = None res=@0x7f16000b
+  com.android.vending.derived.apk.id = 2 
+
+QUERIES packages: ['com.facebook.katana', 'com.facebook.katana', 'com.facebook.lite', 'com.facebook.android', 'com.example.facebook']
+USES-LIBRARY: [{'name': 'androidx.camera.extensions.impl', 'required': 'false'}, {'name': 'androidx.window.extensions', 'required': 'false'}, {'name': 'androidx.window.sidecar', 'required': 'false'}]

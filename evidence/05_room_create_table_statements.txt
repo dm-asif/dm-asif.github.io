@@ -1,0 +1,266 @@
+-- from work/extracted/classes.dex
+CREATE TABLE IF NOT EXISTS `Dependency` (`work_spec_id` TEXT NOT NULL, `prerequisite_id` TEXT NOT NULL, PRIMARY KEY(`work_spec_id`, `prerequisite_id`), FOREIGN KEY(`work_spec_id`) REFERENCES `WorkSpec`(`id`) ON UPDATE CASCADE ON DELETE CASCADE , FOREIGN KEY(`prerequisite_id`) REFERENCES `WorkSpec`(`id`) ON UPDATE CASCADE ON DELETE CASCADE )
+
+-- from work/extracted/classes.dex
+CREATE TABLE IF NOT EXISTS `Preference` (`key` TEXT NOT NULL, `long_value` INTEGER, PRIMARY KEY(`key`))
+
+-- from work/extracted/classes.dex
+CREATE TABLE IF NOT EXISTS `SystemIdInfo` (`work_spec_id` TEXT NOT NULL, `system_id` INTEGER NOT NULL, PRIMARY KEY(`work_spec_id`), FOREIGN KEY(`work_spec_id`) REFERENCES `WorkSpec`(`id`) ON UPDATE CASCADE ON DELETE CASCADE )
+
+-- from work/extracted/classes.dex
+CREATE TABLE IF NOT EXISTS `WorkName` (`name` TEXT NOT NULL, `work_spec_id` TEXT NOT NULL, PRIMARY KEY(`name`, `work_spec_id`), FOREIGN KEY(`work_spec_id`) REFERENCES `WorkSpec`(`id`) ON UPDATE CASCADE ON DELETE CASCADE )
+
+-- from work/extracted/classes.dex
+CREATE TABLE IF NOT EXISTS `WorkProgress` (`work_spec_id` TEXT NOT NULL, `progress` BLOB NOT NULL, PRIMARY KEY(`work_spec_id`), FOREIGN KEY(`work_spec_id`) REFERENCES `WorkSpec`(`id`) ON UPDATE CASCADE ON DELETE CASCADE )
+
+-- from work/extracted/classes.dex
+CREATE TABLE IF NOT EXISTS `WorkSpec` (`id` TEXT NOT NULL, `state` INTEGER NOT NULL, `worker_class_name` TEXT NOT NULL, `input_merger_class_name` TEXT, `input` BLOB NOT NULL, `output` BLOB NOT NULL, `initial_delay` INTEGER NOT NULL, `interval_duration` INTEGER NOT NULL, `flex_duration` INTEGER NOT NULL, `run_attempt_count` INTEGER NOT NULL, `backoff_policy` INTEGER NOT NULL, `backoff_delay_duration` INTEGER NOT NULL, `last_enqueue_time` INTEGER NOT NULL, `minimum_retention_duration` INTEGER NOT NULL, `schedule_requested_at` INTEGER NOT NULL, `run_in_foreground` INTEGER NOT NULL, `out_of_quota_policy` INTEGER NOT NULL, `period_count` INTEGER NOT NULL DEFAULT 0, `required_network_type` INTEGER NOT NULL, `requires_charging` INTEGER NOT NULL, `requires_device_idle` INTEGER NOT NULL, `requires_battery_not_low` INTEGER NOT NULL, `requires_storage_not_low` INTEGER NOT NULL, `trigger_content_update_delay` INTEGER NOT NULL, `trigger_max_content_delay` INTEGER NOT NULL, `content_uri_triggers` BLOB NOT NULL, PRIMARY KEY(`id`))
+
+-- from work/extracted/classes.dex
+CREATE TABLE IF NOT EXISTS `WorkTag` (`tag` TEXT NOT NULL, `work_spec_id` TEXT NOT NULL, PRIMARY KEY(`tag`, `work_spec_id`), FOREIGN KEY(`work_spec_id`) REFERENCES `WorkSpec`(`id`) ON UPDATE CASCADE ON DELETE CASCADE )
+
+-- from work/extracted/classes.dex
+CREATE TABLE IF NOT EXISTS `_new_WorkSpec` (`id` TEXT NOT NULL, `state` INTEGER NOT NULL, `worker_class_name` TEXT NOT NULL, `input_merger_class_name` TEXT, `input` BLOB NOT NULL, `output` BLOB NOT NULL, `initial_delay` INTEGER NOT NULL, `interval_duration` INTEGER NOT NULL, `flex_duration` INTEGER NOT NULL, `run_attempt_count` INTEGER NOT NULL, `backoff_policy` INTEGER NOT NULL, `backoff_delay_duration` INTEGER NOT NULL, `last_enqueue_time` INTEGER NOT NULL, `minimum_retention_duration` INTEGER NOT NULL, `schedule_requested_at` INTEGER NOT NULL, `run_in_foreground` INTEGER NOT NULL, `out_of_quota_policy` INTEGER NOT NULL, `period_count` INTEGER NOT NULL DEFAULT 0, `required_network_type` INTEGER NOT NULL, `requires_charging` INTEGER NOT NULL, `requires_device_idle` INTEGER NOT NULL, `requires_battery_not_low` INTEGER NOT NULL, `requires_storage_not_low` INTEGER NOT NULL, `trigger_content_update_delay` INTEGER NOT NULL, `trigger_max_content_delay` INTEGER NOT NULL, `content_uri_triggers` BLOB NOT NULL, PRIMARY KEY(`id`))
+
+-- from work/extracted/classes.dex
+CREATE TABLE IF NOT EXISTS `_new_WorkSpec` (`id` TEXT NOT NULL, `state` INTEGER NOT NULL, `worker_class_name` TEXT NOT NULL, `input_merger_class_name` TEXT, `input` BLOB NOT NULL, `output` BLOB NOT NULL, `initial_delay` INTEGER NOT NULL, `interval_duration` INTEGER NOT NULL, `flex_duration` INTEGER NOT NULL, `run_attempt_count` INTEGER NOT NULL, `backoff_policy` INTEGER NOT NULL, `backoff_delay_duration` INTEGER NOT NULL, `period_start_time` INTEGER NOT NULL, `minimum_retention_duration` INTEGER NOT NULL, `schedule_requested_at` INTEGER NOT NULL, `run_in_foreground` INTEGER NOT NULL, `out_of_quota_policy` INTEGER NOT NULL, `required_network_type` INTEGER NOT NULL, `requires_charging` INTEGER NOT NULL, `requires_device_idle` INTEGER NOT NULL, `requires_battery_not_low` INTEGER NOT NULL, `requires_storage_not_low` INTEGER NOT NULL, `trigger_content_update_delay` INTEGER NOT NULL, `trigger_max_content_delay` INTEGER NOT NULL, `content_uri_triggers` BLOB NOT NULL, PRIMARY KEY(`id`))
+
+-- from work/extracted/classes.dex
+CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)
+
+-- from work/extracted/classes.dex
+CREATE TABLE event_metadata (_id INTEGER PRIMARY KEY, event_id INTEGER NOT NULL, name TEXT NOT NULL, value TEXT NOT NULL,FOREIGN KEY (event_id) REFERENCES events(_id) ON DELETE CASCADE)
+
+-- from work/extracted/classes.dex
+CREATE TABLE event_payloads (sequence_num INTEGER NOT NULL, event_id INTEGER NOT NULL, bytes BLOB NOT NULL,FOREIGN KEY (event_id) REFERENCES events(_id) ON DELETE CASCADE,PRIMARY KEY (sequence_num, event_id))
+
+-- from work/extracted/classes.dex
+CREATE TABLE events (_id INTEGER PRIMARY KEY, context_id INTEGER NOT NULL, transport_name TEXT NOT NULL, timestamp_ms INTEGER NOT NULL, uptime_ms INTEGER NOT NULL, payload BLOB NOT NULL, code INTEGER, num_attempts INTEGER NOT NULL,FOREIGN KEY (context_id) REFERENCES transport_contexts(_id) ON DELETE CASCADE)
+
+-- from work/extracted/classes.dex
+CREATE TABLE global_log_event_state (last_metrics_upload_ms BIGINT PRIMARY KEY)
+
+-- from work/extracted/classes.dex
+CREATE TABLE log_event_dropped (log_source VARCHAR(45) NOT NULL,reason INTEGER NOT NULL,events_dropped_count BIGINT NOT NULL,PRIMARY KEY(log_source, reason))
+
+-- from work/extracted/classes.dex
+CREATE TABLE transport_contexts (_id INTEGER PRIMARY KEY, backend_name TEXT NOT NULL, priority INTEGER NOT NULL, next_request_ms INTEGER NOT NULL)
+
+-- from work/extracted/classes2.dex
+CREATE TABLE IF NOT EXISTS `account_media` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `file_name` TEXT NOT NULL, `is_profile` INTEGER NOT NULL, `path` TEXT NOT NULL, `account_id` INTEGER NOT NULL, `create_date` TEXT NOT NULL, `synced` INTEGER NOT NULL, `is_active` INTEGER NOT NULL DEFAULT 1, `server_id` INTEGER, FOREIGN KEY(`account_id`) REFERENCES `account`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )
+
+-- from work/extracted/classes2.dex
+CREATE TABLE IF NOT EXISTS `account` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `contact` TEXT NOT NULL, `type` INTEGER NOT NULL, `ac_date` TEXT NOT NULL, `start_balance` REAL NOT NULL, `description` TEXT, `create_date` TEXT NOT NULL, `synced` INTEGER NOT NULL, `is_updated` INTEGER NOT NULL DEFAULT 0, `last_update_date` TEXT, `is_active` INTEGER NOT NULL DEFAULT 1, `server_id` INTEGER, `synced_date` TEXT)
+
+-- from work/extracted/classes2.dex
+CREATE TABLE IF NOT EXISTS `costs` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT, `amount` REAL NOT NULL, `type` INTEGER NOT NULL, `time` TEXT NOT NULL, `sync_status` INTEGER NOT NULL)
+
+-- from work/extracted/classes2.dex
+CREATE TABLE IF NOT EXISTS `digital_transaction` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `amount` REAL NOT NULL, `customer_id` TEXT, `from_name` TEXT NOT NULL, `from_wallet` TEXT NOT NULL, `purpose` TEXT, `to_name` TEXT NOT NULL, `toWallet` TEXT NOT NULL, `txn_number` TEXT NOT NULL, `txn_code` INTEGER NOT NULL, `txn_date` TEXT NOT NULL, `txn_type_name` TEXT NOT NULL, `account_id` INTEGER NOT NULL, `journal_id` INTEGER NOT NULL, `status` INTEGER NOT NULL, `create_date` TEXT NOT NULL, `synced` INTEGER NOT NULL, FOREIGN KEY(`journal_id`) REFERENCES `journal`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`account_id`) REFERENCES `account`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION)
+
+-- from work/extracted/classes2.dex
+CREATE TABLE IF NOT EXISTS `gallery_media` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `file_name` TEXT NOT NULL, `path` TEXT NOT NULL, `create_date` TEXT NOT NULL, `synced` INTEGER NOT NULL, `is_active` INTEGER NOT NULL DEFAULT 1, `server_id` INTEGER)
+
+-- from work/extracted/classes2.dex
+CREATE TABLE IF NOT EXISTS `journal_media` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `file_name` TEXT NOT NULL, `path` TEXT NOT NULL, `journal_id` INTEGER NOT NULL, `create_date` TEXT NOT NULL, `synced` INTEGER NOT NULL, `is_active` INTEGER NOT NULL DEFAULT 1, `server_id` INTEGER, FOREIGN KEY(`journal_id`) REFERENCES `journal`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )
+
+-- from work/extracted/classes2.dex
+CREATE TABLE IF NOT EXISTS `journal` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `amount` REAL NOT NULL, `amount_received` REAL NOT NULL, `txn_type` INTEGER NOT NULL, `txn_mode` INTEGER NOT NULL, `description` TEXT, `txn_date` TEXT NOT NULL, `create_date` TEXT NOT NULL, `orig_account_id` INTEGER NOT NULL, `synced` INTEGER NOT NULL, `is_updated` INTEGER NOT NULL DEFAULT 0, `last_update_date` TEXT, `is_active` INTEGER NOT NULL DEFAULT 1, `server_id` INTEGER, `synced_date` TEXT, FOREIGN KEY(`orig_account_id`) REFERENCES `account`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )
+
+-- from work/extracted/classes2.dex
+CREATE TABLE IF NOT EXISTS `ledger` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `amount` REAL NOT NULL, `type` INTEGER NOT NULL, `journal_id` INTEGER NOT NULL, `account_id` INTEGER NOT NULL, `create_date` TEXT NOT NULL, `synced` INTEGER NOT NULL, `is_active` INTEGER NOT NULL DEFAULT 1, `server_id` INTEGER, FOREIGN KEY(`journal_id`) REFERENCES `journal`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`account_id`) REFERENCES `account`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )
+
+-- from work/extracted/classes2.dex
+CREATE TABLE IF NOT EXISTS `locations` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT, `event_type` INTEGER NOT NULL, `latitude` TEXT NOT NULL, `longitude` TEXT NOT NULL, `time` TEXT NOT NULL, `note` TEXT, `sync_status` INTEGER NOT NULL)
+
+-- from work/extracted/classes2.dex
+CREATE TABLE IF NOT EXISTS `log` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `type` INTEGER NOT NULL, `before` TEXT NOT NULL, `after` TEXT, `create_date` TEXT NOT NULL, `synced` INTEGER NOT NULL, `server_id` INTEGER, `synced_date` TEXT)
+
+-- from work/extracted/classes2.dex
+CREATE TABLE IF NOT EXISTS app2 ( app_id TEXT NOT NULL, first_open_count INTEGER NOT NULL, PRIMARY KEY (app_id));
+
+-- from work/extracted/classes2.dex
+CREATE TABLE IF NOT EXISTS apps ( app_id TEXT NOT NULL, app_instance_id TEXT, gmp_app_id TEXT, resettable_device_id_hash TEXT, last_bundle_index INTEGER NOT NULL, last_bundle_end_timestamp INTEGER NOT NULL, PRIMARY KEY (app_id)) ;
+
+-- from work/extracted/classes2.dex
+CREATE TABLE IF NOT EXISTS audience_filter_values ( app_id TEXT NOT NULL, audience_id INTEGER NOT NULL, current_results BLOB, PRIMARY KEY (app_id, audience_id));
+
+-- from work/extracted/classes2.dex
+CREATE TABLE IF NOT EXISTS conditional_properties ( app_id TEXT NOT NULL, origin TEXT NOT NULL, name TEXT NOT NULL, value BLOB NOT NULL, creation_timestamp INTEGER NOT NULL, active INTEGER NOT NULL, trigger_event_name TEXT, trigger_timeout INTEGER NOT NULL, timed_out_event BLOB,triggered_event BLOB, triggered_timestamp INTEGER NOT NULL, time_to_live INTEGER NOT NULL, expired_event BLOB, PRIMARY KEY (app_id, name)) ;
+
+-- from work/extracted/classes2.dex
+CREATE TABLE IF NOT EXISTS consent_settings ( app_id TEXT NOT NULL, consent_state TEXT NOT NULL, PRIMARY KEY (app_id));
+
+-- from work/extracted/classes2.dex
+CREATE TABLE IF NOT EXISTS default_event_params ( app_id TEXT NOT NULL, parameters BLOB NOT NULL, PRIMARY KEY (app_id));
+
+-- from work/extracted/classes2.dex
+CREATE TABLE IF NOT EXISTS event_filters ( app_id TEXT NOT NULL, audience_id INTEGER NOT NULL, filter_id INTEGER NOT NULL, event_name TEXT NOT NULL, data BLOB NOT NULL, PRIMARY KEY (app_id, event_name, audience_id, filter_id));
+
+-- from work/extracted/classes2.dex
+CREATE TABLE IF NOT EXISTS events ( app_id TEXT NOT NULL, name TEXT NOT NULL, lifetime_count INTEGER NOT NULL, current_bundle_count INTEGER NOT NULL, last_fire_timestamp INTEGER NOT NULL, PRIMARY KEY (app_id, name)) ;
+
+-- from work/extracted/classes2.dex
+CREATE TABLE IF NOT EXISTS main_event_params ( app_id TEXT NOT NULL, event_id TEXT NOT NULL, children_to_process INTEGER NOT NULL, main_event BLOB NOT NULL, PRIMARY KEY (app_id));
+
+-- from work/extracted/classes2.dex
+CREATE TABLE IF NOT EXISTS property_filters ( app_id TEXT NOT NULL, audience_id INTEGER NOT NULL, filter_id INTEGER NOT NULL, property_name TEXT NOT NULL, data BLOB NOT NULL, PRIMARY KEY (app_id, property_name, audience_id, filter_id));
+
+-- from work/extracted/classes2.dex
+CREATE TABLE IF NOT EXISTS queue ( app_id TEXT NOT NULL, bundle_end_timestamp INTEGER NOT NULL, data BLOB NOT NULL);
+
+-- from work/extracted/classes2.dex
+CREATE TABLE IF NOT EXISTS raw_events ( app_id TEXT NOT NULL, name TEXT NOT NULL, timestamp INTEGER NOT NULL, metadata_fingerprint INTEGER NOT NULL, data BLOB NOT NULL);
+
+-- from work/extracted/classes2.dex
+CREATE TABLE IF NOT EXISTS raw_events_metadata ( app_id TEXT NOT NULL, metadata_fingerprint INTEGER NOT NULL, metadata BLOB NOT NULL, PRIMARY KEY (app_id, metadata_fingerprint));
+
+-- from work/extracted/classes2.dex
+CREATE TABLE IF NOT EXISTS user_attributes ( app_id TEXT NOT NULL, name TEXT NOT NULL, set_timestamp INTEGER NOT NULL, value BLOB NOT NULL, PRIMARY KEY (app_id, name)) ;
+
+-- from work/extracted/classes2.dex
+CREATE TABLE offline_buffered_pings (timestamp INTEGER PRIMARY_KEY, gws_query_id TEXT, url TEXT, event_state INTEGER)
+
+-- from work/extracted/classes2.dex
+CREATE TABLE offline_signal_contents (timestamp INTEGER PRIMARY_KEY, serialized_proto_data BLOB)
+
+-- from work/extracted/classes2.dex
+CREATE TABLE offline_signal_statistics (statistic_name TEXT PRIMARY_KEY, value INTEGER)
+
+-- from work/extracted/classes3.dex
+CREATE TABLE IF NOT EXISTS `account_media` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `file_name` TEXT NOT NULL, `is_profile` INTEGER NOT NULL, `path` TEXT NOT NULL, `account_id` INTEGER NOT NULL, `create_date` TEXT NOT NULL, `synced` INTEGER NOT NULL, `is_active` INTEGER NOT NULL DEFAULT 1, `server_id` INTEGER, FOREIGN KEY(`account_id`) REFERENCES `account`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )
+
+-- from work/extracted/classes3.dex
+CREATE TABLE IF NOT EXISTS `account` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `contact` TEXT NOT NULL, `type` INTEGER NOT NULL, `ac_date` TEXT NOT NULL, `start_balance` REAL NOT NULL, `description` TEXT, `create_date` TEXT NOT NULL, `synced` INTEGER NOT NULL, `share_link` TEXT, `last_share_media` TEXT, `is_updated` INTEGER NOT NULL DEFAULT 0, `last_update_date` TEXT, `is_active` INTEGER NOT NULL DEFAULT 1, `server_id` INTEGER, `synced_date` TEXT, `report_visibility` INTEGER NOT NULL DEFAULT 1)
+
+-- from work/extracted/classes3.dex
+CREATE TABLE IF NOT EXISTS `cash_sales` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT, `amount` REAL NOT NULL, `time` TEXT NOT NULL, `sync_status` INTEGER NOT NULL)
+
+-- from work/extracted/classes3.dex
+CREATE TABLE IF NOT EXISTS `cashbox_adjustment` (`id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `journal_id` INTEGER NOT NULL, `amount` REAL NOT NULL, `create_date` TEXT NOT NULL, `update_date` TEXT, `synced` INTEGER NOT NULL, FOREIGN KEY(`journal_id`) REFERENCES `journal`(`id`) ON DELETE CASCADE)
+
+-- from work/extracted/classes3.dex
+CREATE TABLE IF NOT EXISTS `cashbox_adjustment` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `journal_id` INTEGER NOT NULL, `amount` REAL NOT NULL, `synced` INTEGER NOT NULL, `create_date` TEXT NOT NULL, `update_date` TEXT, FOREIGN KEY(`journal_id`) REFERENCES `journal`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )
+
+-- from work/extracted/classes3.dex
+CREATE TABLE IF NOT EXISTS `closing_balance` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `amount` REAL NOT NULL, `closing_date` TEXT NOT NULL, `balance_generation_time` TEXT NOT NULL, `sync_status` INTEGER NOT NULL)
+
+-- from work/extracted/classes3.dex
+CREATE TABLE IF NOT EXISTS `closing_balance` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `amount` REAL NOT NULL, `closing_date` TEXT NOT NULL, `balance_generation_time` TEXT NOT NULL, `sync_status` INTEGER NOT NULL, `is_updated` INTEGER NOT NULL DEFAULT 0, `last_update_date` TEXT)
+
+-- from work/extracted/classes3.dex
+CREATE TABLE IF NOT EXISTS `costs` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT, `amount` REAL NOT NULL, `type` INTEGER NOT NULL, `time` TEXT NOT NULL, `sync_status` INTEGER NOT NULL)
+
+-- from work/extracted/classes3.dex
+CREATE TABLE IF NOT EXISTS `credit_collection_adjustment_backup` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `journal_id` INTEGER NOT NULL, `amount` REAL NOT NULL, `txn_no` TEXT NOT NULL, `txn_time` TEXT NOT NULL, `synced` INTEGER NOT NULL, `create_date` TEXT NOT NULL, `update_date` TEXT, FOREIGN KEY(`journal_id`) REFERENCES `journal`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )
+
+-- from work/extracted/classes3.dex
+CREATE TABLE IF NOT EXISTS `credit_collection_adjustment` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `journal_id` INTEGER NOT NULL, `amount` REAL NOT NULL, `req_id` TEXT NOT NULL, `txn_no` TEXT NOT NULL, `txn_time` TEXT NOT NULL, `synced` INTEGER NOT NULL, `create_date` TEXT NOT NULL, `update_date` TEXT, FOREIGN KEY(`journal_id`) REFERENCES `journal`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )
+
+-- from work/extracted/classes3.dex
+CREATE TABLE IF NOT EXISTS `credit_collection_adjustment` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `journal_id` INTEGER NOT NULL, `amount` REAL NOT NULL, `txn_no` TEXT NOT NULL, `txn_time` TEXT NOT NULL, `synced` INTEGER NOT NULL, `create_date` TEXT NOT NULL, `update_date` TEXT, FOREIGN KEY(`journal_id`) REFERENCES `journal`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )
+
+-- from work/extracted/classes3.dex
+CREATE TABLE IF NOT EXISTS `credits` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT, `customer` INTEGER NOT NULL, `amount` REAL NOT NULL, `type` INTEGER NOT NULL, `time` TEXT NOT NULL, `note` TEXT, `sync_status` INTEGER NOT NULL, FOREIGN KEY(`customer`) REFERENCES `customers`(`_id`) ON UPDATE NO ACTION ON DELETE NO ACTION )
+
+-- from work/extracted/classes3.dex
+CREATE TABLE IF NOT EXISTS `customers` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `phone` TEXT, `credit` REAL NOT NULL, `time` REAL NOT NULL, `sync_status` INTEGER NOT NULL)
+
+-- from work/extracted/classes3.dex
+CREATE TABLE IF NOT EXISTS `digital_sales` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT, `type` INTEGER NOT NULL, `sender` TEXT, `receiver` TEXT, `amount` REAL NOT NULL, `transaction_id` TEXT, `time` TEXT NOT NULL, `sync_status` INTEGER NOT NULL)
+
+-- from work/extracted/classes3.dex
+CREATE TABLE IF NOT EXISTS `digital_transaction` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `amount` REAL NOT NULL, `customer_id` TEXT, `from_name` TEXT NOT NULL, `from_wallet` TEXT NOT NULL, `purpose` TEXT, `to_name` TEXT NOT NULL, `toWallet` TEXT NOT NULL, `txn_number` TEXT NOT NULL, `txn_code` INTEGER NOT NULL, `txn_date` TEXT NOT NULL, `txn_type_name` TEXT NOT NULL, `account_id` INTEGER NOT NULL, `journal_id` INTEGER NOT NULL, `status` INTEGER NOT NULL, `create_date` TEXT NOT NULL, `synced` INTEGER NOT NULL, FOREIGN KEY(`journal_id`) REFERENCES `journal`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`account_id`) REFERENCES `account`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )
+
+-- from work/extracted/classes3.dex
+CREATE TABLE IF NOT EXISTS `dynamic_form_answer` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `form_id` INTEGER, `question_id` INTEGER, `submitted_at` TEXT, `form_sent_at` INTEGER NOT NULL, `question_type` TEXT, `answer_type` TEXT, `synced` INTEGER NOT NULL, `answers` TEXT, `file_path` TEXT)
+
+-- from work/extracted/classes3.dex
+CREATE TABLE IF NOT EXISTS `dynamic_form_answer`(`id` INTEGER PRIMARY KEY AUTOINCREMENT,`form_id` INTEGER,`question_id` INTEGER,`submitted_at` TEXT, `question_type` TEXT, `answer_type` TEXT, `answers` TEXT, `file_path` TEXT, `synced` INTEGER NOT NULL)
+
+-- from work/extracted/classes3.dex
+CREATE TABLE IF NOT EXISTS `dynamic_form` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `bulk_notification_id` INTEGER, `start_date` TEXT, `received_date` TEXT, `sent_date` TEXT, `expiry_date` TEXT, `last_shown` TEXT, `form_data` TEXT, `notification_id` INTEGER, `seen_count` INTEGER NOT NULL DEFAULT 0)
+
+-- from work/extracted/classes3.dex
+CREATE TABLE IF NOT EXISTS `dynamic_form`(`id` INTEGER PRIMARY KEY AUTOINCREMENT,`start_date` TEXT, `expiry_date` TEXT, `last_shown` TEXT,  `form_data` TEXT, `bulk_notification_id` INTEGER, `notification_id` INTEGER, `seen_count` INTEGER NOT NULL DEFAULT 0)
+
+-- from work/extracted/classes3.dex
+CREATE TABLE IF NOT EXISTS `event_logger` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `event_name` TEXT NOT NULL, `event_start_time` TEXT NOT NULL, `sync_status` INTEGER NOT NULL)
+
+-- from work/extracted/classes3.dex
+CREATE TABLE IF NOT EXISTS `event_logger` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `notification_id` INTEGER, `bulk_notification_id` INTEGER, `event_name` TEXT NOT NULL, `event_start_time` TEXT NOT NULL, `sync_status` INTEGER NOT NULL)
+
+-- from work/extracted/classes3.dex
+CREATE TABLE IF NOT EXISTS `file_upload_history` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `message_id` INTEGER NOT NULL, `file_id` INTEGER NOT NULL, `file_type_id` INTEGER NOT NULL, `capture_date` TEXT, `title` TEXT NOT NULL, `uri` TEXT, `description` TEXT, `is_live_photo` INTEGER NOT NULL, `resolution` TEXT NOT NULL, `sync_date` TEXT, `upload_status` INTEGER NOT NULL)
+
+-- from work/extracted/classes3.dex
+CREATE TABLE IF NOT EXISTS `file_upload_history`(`id` INTEGER PRIMARY KEY AUTOINCREMENT, `message_id` INTEGER NOT NULL,`file_type_id` INTEGER NOT NULL, `file_id` INTEGER NOT NULL, `capture_date` TEXT, `sync_date` TEXT, `description` TEXT, `title` TEXT NOT NULL, `is_live_photo` INTEGER NOT NULL , `resolution` TEXT NOT NULL, `upload_status` INTEGER NOT NULL, `uri` TEXT)
+
+-- from work/extracted/classes3.dex
+CREATE TABLE IF NOT EXISTS `gallery_media` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `file_name` TEXT NOT NULL, `path` TEXT NOT NULL, `create_date` TEXT NOT NULL, `synced` INTEGER NOT NULL, `is_active` INTEGER NOT NULL DEFAULT 1, `server_id` INTEGER)
+
+-- from work/extracted/classes3.dex
+CREATE TABLE IF NOT EXISTS `inbox_message` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `server_id` INTEGER NOT NULL, `bulk_notification_id` INTEGER, `type` TEXT NOT NULL, `is_seen` INTEGER NOT NULL DEFAULT 0, `content_type` TEXT, `create_date` TEXT NOT NULL, `expiry_date` TEXT, `http_link` TEXT, `title` TEXT NOT NULL, `summary` TEXT NOT NULL, `body` TEXT NOT NULL, `clickable_text` TEXT, `thumbnail_url` TEXT NOT NULL, `full_image_url` TEXT NOT NULL, `action_id` INTEGER, `notification_id` INTEGER, `acquirerId` TEXT, `transactionType` TEXT, `audible_on_open` INTEGER, `audible_title` INTEGER, `audible_content` INTEGER)
+
+-- from work/extracted/classes3.dex
+CREATE TABLE IF NOT EXISTS `inbox_message`(`id` INTEGER PRIMARY KEY AUTOINCREMENT, `server_id` INTEGER NOT NULL, `title` TEXT NOT NULL, `body` TEXT NOT NULL, `summary` TEXT NOT NULL, `clickable_text` TEXT, `type` TEXT NOT NULL, `create_date` TEXT NOT NULL, `expiry_date` TEXT, `content_type` TEXT, `http_link` TEXT, `thumbnail_url` TEXT NOT NULL, `full_image_url` TEXT NOT NULL,`action_id` INTEGER,`is_seen` INTEGER NOT NULL DEFAULT 0)
+
+-- from work/extracted/classes3.dex
+CREATE TABLE IF NOT EXISTS `journal_media` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `file_name` TEXT NOT NULL, `path` TEXT NOT NULL, `journal_id` INTEGER NOT NULL, `create_date` TEXT NOT NULL, `synced` INTEGER NOT NULL, `is_active` INTEGER NOT NULL DEFAULT 1, `server_id` INTEGER, FOREIGN KEY(`journal_id`) REFERENCES `journal`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )
+
+-- from work/extracted/classes3.dex
+CREATE TABLE IF NOT EXISTS `journal` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `amount` REAL NOT NULL, `amount_received` REAL NOT NULL, `txn_type` INTEGER NOT NULL, `txn_mode` INTEGER NOT NULL, `description` TEXT, `txn_date` TEXT NOT NULL, `create_date` TEXT NOT NULL, `orig_account_id` INTEGER NOT NULL, `synced` INTEGER NOT NULL, `is_updated` INTEGER NOT NULL DEFAULT 0, `last_update_date` TEXT, `is_active` INTEGER NOT NULL DEFAULT 1, `server_id` INTEGER, `synced_date` TEXT, FOREIGN KEY(`orig_account_id`) REFERENCES `account`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )
+
+-- from work/extracted/classes3.dex
+CREATE TABLE IF NOT EXISTS `ledger` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `amount` REAL NOT NULL, `type` INTEGER NOT NULL, `journal_id` INTEGER NOT NULL, `account_id` INTEGER NOT NULL, `create_date` TEXT NOT NULL, `synced` INTEGER NOT NULL, `is_active` INTEGER NOT NULL DEFAULT 1, `server_id` INTEGER, FOREIGN KEY(`journal_id`) REFERENCES `journal`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`account_id`) REFERENCES `account`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )
+
+-- from work/extracted/classes3.dex
+CREATE TABLE IF NOT EXISTS `locations` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT, `event_type` INTEGER NOT NULL, `latitude` TEXT NOT NULL, `longitude` TEXT NOT NULL, `time` TEXT NOT NULL, `note` TEXT, `sync_status` INTEGER NOT NULL)
+
+-- from work/extracted/classes3.dex
+CREATE TABLE IF NOT EXISTS `log` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `type` INTEGER NOT NULL, `before` TEXT NOT NULL, `after` TEXT, `create_date` TEXT NOT NULL, `synced` INTEGER NOT NULL, `server_id` INTEGER, `synced_date` TEXT)
+
+-- from work/extracted/classes3.dex
+CREATE TABLE IF NOT EXISTS `opening_balance` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `amount` REAL NOT NULL, `input_date` TEXT NOT NULL, `sync_status` INTEGER NOT NULL)
+
+-- from work/extracted/classes3.dex
+CREATE TABLE IF NOT EXISTS `opening_balance` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `amount` REAL NOT NULL, `input_date` TEXT NOT NULL, `sync_status` INTEGER NOT NULL, `is_updated` INTEGER NOT NULL DEFAULT 0, `last_update_date` TEXT)
+
+-- from work/extracted/classes3.dex
+CREATE TABLE IF NOT EXISTS `popup_message` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `server_id` INTEGER NOT NULL, `bulk_notification_id` INTEGER, `display_type` TEXT NOT NULL, `seen_count` INTEGER NOT NULL DEFAULT 0, `action_type` TEXT NOT NULL, `action_data` TEXT, `start_date` TEXT NOT NULL, `expiry_date` TEXT, `sent_date` TEXT, `received_date` TEXT, `last_shown` TEXT, `min_delay` INTEGER NOT NULL DEFAULT 0, `title` TEXT, `body` TEXT, `button_text` TEXT NOT NULL, `image_url` TEXT NOT NULL, `inbox_id` INTEGER, `skip_duration_in_seconds` INTEGER, `in_screen_to_show` TEXT, `video_url` TEXT, `notification_id` INTEGER, `audible_on_open` INTEGER, `audible_title` INTEGER, `audible_content` INTEGER)
+
+-- from work/extracted/classes3.dex
+CREATE TABLE IF NOT EXISTS `popup_message`(`id` INTEGER PRIMARY KEY AUTOINCREMENT, `server_id` INTEGER NOT NULL, `title` TEXT, `body` TEXT,`button_text` TEXT NOT NULL, `display_type` TEXT NOT NULL, `start_date` TEXT NOT NULL, `expiry_date` TEXT, `received_date` TEXT, `sent_date` TEXT, `last_shown` TEXT, `action_type` TEXT NOT NULL, `action_data` TEXT, `image_url` TEXT NOT NULL,`inbox_id` INTEGER, `min_delay` INTEGER NOT NULL DEFAULT 0,`seen_count` INTEGER NOT NULL DEFAULT 0)
+
+-- from work/extracted/classes3.dex
+CREATE TABLE IF NOT EXISTS `recharge_packages` (`id` INTEGER NOT NULL, `operator` TEXT NOT NULL, `connectionType` TEXT NOT NULL, `category` TEXT, `internetBandwidth` TEXT, `bandwidthUnit` TEXT, `talkTime` INTEGER, `talkTimeUnit` TEXT, `callRate` REAL, `callRateUnit` TEXT, `callRateUnitTime` TEXT, `callRatePulse` INTEGER, `callRatePulseUnit` TEXT, `smsCount` INTEGER, `others` TEXT, `amount` REAL NOT NULL, `validity` TEXT, `validityUnit` TEXT, `packageCommissionReceive` REAL, `packageCommissionOffer` REAL, `offerTag` TEXT, `published` INTEGER, `startDate` TEXT, `expiryDate` TEXT, `createdAt` TEXT NOT NULL, `updatedAt` TEXT, `remarks` TEXT, `order` INTEGER, PRIMARY KEY(`id`))
+
+-- from work/extracted/classes3.dex
+CREATE TABLE IF NOT EXISTS `reconciliations` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT, `time` TEXT NOT NULL, `opening_balance` REAL NOT NULL, `other_cash_sales` REAL NOT NULL, `other_credit_sales` REAL NOT NULL, `closing_balance` REAL NOT NULL, `sync_status` INTEGER NOT NULL)
+
+-- from work/extracted/classes3.dex
+CREATE TABLE IF NOT EXISTS `supplier_payment_adjustment` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `journal_id` INTEGER NOT NULL, `amount` REAL NOT NULL, `txn_charge` REAL, `wallet_balance` REAL, `txn_no` TEXT NOT NULL, `txn_time` TEXT NOT NULL, `from_wallet` TEXT, `to_wallet` TEXT NOT NULL, `txn_type` TEXT NOT NULL, `synced` INTEGER NOT NULL, `create_date` TEXT NOT NULL, `update_date` TEXT, FOREIGN KEY(`journal_id`) REFERENCES `journal`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )
+
+-- from work/extracted/classes3.dex
+CREATE TABLE IF NOT EXISTS `supplier_payment_adjustment` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `journal_id` INTEGER NOT NULL, `amount` REAL NOT NULL,`txn_charge` REAL,`wallet_balance` REAL, `txn_no` TEXT NOT NULL, `txn_time` TEXT NOT NULL, `from_wallet` TEXT, `to_wallet` TEXT NOT NULL,`txn_type` TEXT NOT NULL, `synced` INTEGER NOT NULL, `create_date` TEXT NOT NULL, `update_date` TEXT, FOREIGN KEY(`journal_id`) REFERENCES `journal`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )
+
+-- from work/extracted/classes3.dex
+CREATE TABLE IF NOT EXISTS `suppliers` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT NOT NULL, `phone` TEXT, `due_payment` REAL NOT NULL, `time` REAL NOT NULL, `sync_status` INTEGER NOT NULL)
+
+-- from work/extracted/classes3.dex
+CREATE TABLE IF NOT EXISTS `supplies` (`_id` INTEGER PRIMARY KEY AUTOINCREMENT, `supplier` INTEGER NOT NULL, `sender` TEXT, `receiver` TEXT, `type` INTEGER NOT NULL, `amount` REAL NOT NULL, `transaction_id` TEXT, `time` TEXT NOT NULL, `note` TEXT, `sync_status` INTEGER NOT NULL, FOREIGN KEY(`supplier`) REFERENCES `suppliers`(`_id`) ON UPDATE NO ACTION ON DELETE NO ACTION )
+
+-- from work/extracted/classes3.dex
+CREATE TABLE IF NOT EXISTS `tagada_log` (`id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `account_id` INTEGER NOT NULL, `create_date` TEXT NOT NULL, `credit_amount` REAL, `tagada_type` TEXT, `synced` INTEGER NOT NULL, FOREIGN KEY(`account_id`) REFERENCES `account`(`id`) ON DELETE CASCADE)
+
+-- from work/extracted/classes3.dex
+CREATE TABLE IF NOT EXISTS `tagada_log` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `account_id` INTEGER NOT NULL, `tagada_type` TEXT, `credit_amount` REAL, `synced` INTEGER NOT NULL, `create_date` TEXT NOT NULL, FOREIGN KEY(`account_id`) REFERENCES `account`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )
+
+-- from work/extracted/classes3.dex
+CREATE TABLE IF NOT EXISTS `transaction_settlement_action` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `transaction_number` TEXT NOT NULL, `action_type` TEXT NOT NULL, `synced` INTEGER NOT NULL, `create_date` TEXT NOT NULL, `update_date` TEXT)
+
+-- from work/extracted/classes3.dex
+CREATE TABLE IF NOT EXISTS recharge_packages (id INTEGER PRIMARY KEY NOT NULL,operator TEXT NOT NULL,connectionType TEXT NOT NULL,category TEXT,internetBandwidth TEXT,bandwidthUnit TEXT,talkTime INTEGER,talkTimeUnit TEXT,callRate REAL,callRateUnit TEXT,callRateUnitTime TEXT,callRatePulse INTEGER,callRatePulseUnit TEXT,smsCount INTEGER,others TEXT,amount REAL NOT NULL,validity TEXT,validityUnit TEXT,packageCommissionReceive REAL,packageCommissionOffer REAL,offerTag TEXT,published INTEGER,startDate TEXT,expiryDate TEXT,createdAt TEXT NOT NULL,updatedAt TEXT,remarks TEXT,`order` INTEGER)
+
+-- from work/extracted/classes3.dex
+CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)
